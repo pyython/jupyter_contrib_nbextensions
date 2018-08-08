@@ -338,18 +338,15 @@ define([
 
         show_comments_button.click(
             function() {
+                IPython.CellToolbar.activate_preset('Enable Comments');
                 var cells = IPython.notebook.get_cells();
-                console.log(cells);
                 if ($('.qtip:visible').length < 2) {
-                    console.log('show');
                     for (var i in cells) {
-                        console.log(cells[i].metadata);
                         if (cells[i].metadata['comments'] != undefined && cells[i].metadata['comments'].length > 0) {
                             show_comment_dialog(cells[i]);
                         }
                     }
                 } else {
-                    console.log('hide');
                     for (var i in cells) {
                         hide_comment_dialog(cells[i]);
                     }
@@ -368,5 +365,5 @@ define([
     }
 
     IPython.CellToolbar.register_callback(flag_name, cell_flag_init);
-    IPython.CellToolbar.register_preset('Export Comments', [flag_name]);
+    IPython.CellToolbar.register_preset('Enable Comments', [flag_name]);
 });
