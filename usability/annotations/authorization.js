@@ -112,12 +112,6 @@ define(['jquery'], function($) {
 
     var is_authorized = function() {
         // Returns true if cookie contains user info
-        try {
-            var cookie = JSON.parse(document.cookie);
-        } catch(e) {
-            return false;
-        }
-
         if (getCookie('username') == undefined || getCookie('username') == '') {
             return false;
         } else {
