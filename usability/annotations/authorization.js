@@ -3,16 +3,22 @@ define(['jquery'], function($) {
     "use strict";
 
     var SHORT_NAME_ERROR = "This name is too short";
+    
+    var getCookie = function(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) {
+            return parts.pop().split(";").shift();
+        }
+    };
 
     var authorize = function(username) {
         delete_cookie();
         if (username.length <= 1) {
             throw new Error(SHORT_NAME_ERROR);
         }
-        var cookie = JSON.parse(document.cookie);
-        cookie['username'] = username;
-        cookie['registration_date'] = Date();
-        document.cookie = JSON.stringify(cookie);
+        document.cookie = 'username=' + username;
+        document.cookie = 'registration_date=' + Date();
         IPython.notebook.save_checkpoint();
         console.log("Authorized");
     };
@@ -112,7 +118,7 @@ define(['jquery'], function($) {
             return false;
         }
 
-        if (cookie['username'] == undefined || cookie['username'] == '') {
+        if (getCookie('username') == undefined || getCookie('username') == '') {
             return false;
         } else {
             return true;
@@ -120,12 +126,11 @@ define(['jquery'], function($) {
     };
 
     var get_username = function() {
-        var cookie = JSON.parse(document.cookie);
-        return cookie["username"];
+        return getCookie("username");
     };
 
     var delete_cookie = function() {
-        document.cookie = '{"username":""}';
+        document.cookie = 'username=""';
     }
 
     var authorization = {
