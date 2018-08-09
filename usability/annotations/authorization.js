@@ -79,14 +79,7 @@ define(['jquery'], function($) {
                     if (is_authorized()) {
                         remove_user_login_widget();
                         show_user_widget(username);
-                        var formatted_username = username.toLowerCase().trim();
-                        if (IPython.notebook.metadata["commenters"] == undefined) {
-                            IPython.notebook.metadata["commenters"] = [];
-                        }
-                        if (IPython.notebook.metadata["commenters"].indexOf(formatted_username) == -1) {
-                            IPython.notebook.metadata["commenters"].push(formatted_username);
-                            IPython.notebook.save_checkpoint();
-                        }
+                        save_commenter(username);
                     }
                 } catch(e) {
                     $("#username_input_field").val(e.message).css('color','red');
@@ -103,6 +96,7 @@ define(['jquery'], function($) {
                         if (is_authorized()) {
                             remove_user_login_widget();
                             show_user_widget(username);
+                            save_commenter(username);
                         }
                     } catch(e) {
                         $("#username_input_field").val(e.message).css('color','red');
@@ -135,12 +129,26 @@ define(['jquery'], function($) {
         document.cookie = 'username=';
     }
 
+    var save_commenter = function(username) {
+        var formatted_username = username.toLowerCase().trim();
+        if (IPython.notebook.metadata["commenters"] == undefined) {
+            IPython.notebook.metadata["commenters"] = [];
+        }
+        if (IPython.notebook.metadata["commenters"].indexOf(formatted_username) == -1) {
+            IPython.notebook.metadata["commenters"].push(formatted_username);
+            IPython.notebook.save_checkpoint();
+        } else {
+            console.log('User already saved as commenter.');
+        }
+    }
+
     var authorization = {
         authorize : authorize,
         is_authorized : is_authorized,
         get_username : get_username,
         show_user_widget : show_user_widget,
-        show_user_login_widget : show_user_login_widget
+        show_user_login_widget : show_user_login_widget,
+        save_commenter : save_commenter
     };
 
     return authorization;
