@@ -83,12 +83,12 @@ define([
         var $printed_comments = $('<div/>',{class: 'printed_comments'});
         var $textarea = $('<textarea/>', {type: 'text', class: 'edited_comment'});
         $textarea.attr("index", -1);
-        //var $button = $('<button/>', {class: 'comment_action', html: 'Send'});
+        var $button = $('<button/>', {class: 'resolve_comment'});
         append_old_comments(cell, $printed_comments);
         $printed_comments.appendTo($comment_box);
         $textarea.appendTo($comment_box);
         $comment_box.appendTo($dialog);
-        //$button.appendTo($dialog);
+        $button.appendTo($dialog);
         return $dialog;
     }
 
@@ -217,6 +217,12 @@ define([
                     scroll_to_last_comment($('#' + cell.comment_id + ' .printed_comments'));
             }
         });
+        $('body').on('click', '#' + cell.comment_id + ' .resolve_comment', function () {
+            var comments = commentapi.get_all_comments(cell);
+            for (var i = 0; i < comments.length; ++i) {
+                commentapi.delete_comment(cell, i);
+            }
+        }
     }
 
     function add_new_line(edited_comment) {
