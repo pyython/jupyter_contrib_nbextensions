@@ -79,14 +79,14 @@ define(['jquery'], function($) {
                     if (is_authorized()) {
                         remove_user_login_widget();
                         show_user_widget(username);
-                        // var formatted_username = username.toLowerCase().trim();
-                        // if (IPython.notebook.metadata["commenters"] == undefined) {
-                        //     IPython.notebook.metadata["commenters"] = [];
-                        // }
-                        // if (IPython.notebook.metadata["commenters"].indexOf(formatted_username) == -1) {
-                        //     IPython.notebook.metadata["commenters"].push(formatted_username);
-                        //     IPython.notebook.save_checkpoint();
-                        // }
+                        var formatted_username = username.toLowerCase().trim();
+                        if (IPython.notebook.metadata["commenters"] == undefined) {
+                            IPython.notebook.metadata["commenters"] = [];
+                        }
+                        if (IPython.notebook.metadata["commenters"].indexOf(formatted_username) == -1) {
+                            IPython.notebook.metadata["commenters"].push(formatted_username);
+                            IPython.notebook.save_checkpoint();
+                        }
                     }
                 } catch(e) {
                     $("#username_input_field").val(e.message).css('color','red');
