@@ -218,6 +218,10 @@ define([
             }
         });
         $('body').on('click', '#' + cell.comment_id + ' .resolve_comment', function () {
+            var $comments = $('#' + cell.comment_id + ' .printed_comments').children('.comment_field');
+            for (var i; i < $comments.length; i++){
+                $comments[i].remove();
+            }
             cell.metadata.comments = [];
             IPython.notebook.save_checkpoint();
             hide_comment_dialog(cell);
