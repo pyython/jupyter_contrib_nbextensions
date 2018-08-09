@@ -219,7 +219,7 @@ define([
         });
         $('body').on('click', '#' + cell.comment_id + ' .resolve_comment', function () {
             var $comments = $('#' + cell.comment_id + ' .printed_comments').children('.comment_field');
-            for (var i; i < $comments.length; i++){
+            for (var i = 0; i < $comments.length; i++){
                 $comments[i].remove();
             }
             cell.metadata.comments = [];
