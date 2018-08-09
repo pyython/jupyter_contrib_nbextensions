@@ -83,7 +83,7 @@ define([
         var $printed_comments = $('<div/>',{class: 'printed_comments'});
         var $textarea = $('<textarea/>', {type: 'text', class: 'edited_comment'});
         $textarea.attr("index", -1);
-        var $button = $('<button/>', {class: 'resolve_comment'});
+        var $button = $('<button/>', {class: 'resolve_comment', html:'Resolve', title: 'Resolve'});
         append_old_comments(cell, $printed_comments);
         $printed_comments.appendTo($comment_box);
         $textarea.appendTo($comment_box);
@@ -222,6 +222,7 @@ define([
             for (var i = 0; i < comments.length; ++i) {
                 commentapi.delete_comment(cell, i);
             }
+            hide_comment_dialog(cell);
         });
     }
 
