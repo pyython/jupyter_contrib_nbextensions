@@ -113,7 +113,8 @@ define([
         var date = format_date_to_today_moment(comment.date);
         var $comment_field = $('<div/>', {class: 'comment_field'});
         var commenter_number = IPython.notebook.metadata["commenters"].indexOf(comment.username.toLowerCase().trim());
-        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":", color: colors[commenter_number]});
+        console.log(commenter_number);
+        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":", style: "color: " + colors[commenter_number]});
         var $date = $('<span/>', {class: 'comment_date', html: date});
         var $heading = $('<h4/>', {class: 'comment_heading'});
         var $comment = $('<p/>', {html: insert_line_breaks(comment.comment), class: "comment_text"});
