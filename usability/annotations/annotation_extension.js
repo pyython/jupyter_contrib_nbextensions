@@ -218,10 +218,9 @@ define([
             }
         });
         $('body').on('click', '#' + cell.comment_id + ' .resolve_comment', function () {
-            var comments = commentapi.get_all_comments(cell);
-            for (var i = 0; i < comments.length; ++i) {
-                commentapi.delete_comment(cell, i);
-            }
+            var $comments = commentapi.get_all_comments(cell);
+            $comments = undefined;
+            IPython.notebook.save_checkpoint();
             hide_comment_dialog(cell);
         });
     }
