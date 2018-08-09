@@ -195,7 +195,11 @@ define([
                         save_edited_comment($(this), cell);
                     }
                     else {
-                        print_last_comment(cell);
+                        if(authorization.is_authorized()){
+                            print_last_comment(cell);
+                        } else {
+                            alert("You must login where it says 'Type your name' before you can submit a comment.")
+                        }
                     }
                 }
                 $(this).parents('form').submit();
@@ -282,19 +286,15 @@ define([
             return;
         }
         var username = authorization.get_username();
-        if (username != ''){
-            var comment = commentapi.save_comment(cell, username, text);
-            var $printed_comments = $('#' + cell.comment_id + ' .printed_comments');
-            var comment_index = +$printed_comments.attr("comment_num");
-            var $saved_comment = design_comment(cell, comment, comment_index);
-            $saved_comment.appendTo($printed_comments);
-            $last_comment.val("");
-            $printed_comments.attr("comment_num", comment_index + 1);
-            scroll_to_last_comment($printed_comments);
-            $("#" + cell.comment_id + " .edited_comment").blur();
-        } else {
-            alert("You must login where it says 'Type your name' before you can submit a comment.")
-        }
+        var comment = commentapi.save_comment(cell, username, text);
+        var $printed_comments = $('#' + cell.comment_id + ' .printed_comments');
+        var comment_index = +$printed_comments.attr("comment_num");
+        var $saved_comment = design_comment(cell, comment, comment_index);
+        $saved_comment.appendTo($printed_comments);
+        $last_comment.val("");
+        $printed_comments.attr("comment_num", comment_index + 1);
+        scroll_to_last_comment($printed_comments);
+        $("#" + cell.comment_id + " .edited_comment").blur();
         
     }
 
