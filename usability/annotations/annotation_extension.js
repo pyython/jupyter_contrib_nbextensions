@@ -222,7 +222,7 @@ define([
             for (var i = 0; i < comments.length; ++i) {
                 commentapi.delete_comment(cell, i);
             }
-        }
+        });
     }
 
     function add_new_line(edited_comment) {
