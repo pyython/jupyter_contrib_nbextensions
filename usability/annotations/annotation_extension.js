@@ -13,7 +13,7 @@ define([
     var counter = 0;
     var is_edited_comment_mode = false;
 
-    var ERROR_MESSAGE = "You are not authorized";
+    var ERROR_MESSAGE = "Please log in before editing or submitting comments.";
 
     function generate_id() {
         return 'comment_dialog_' + counter++;
@@ -195,11 +195,7 @@ define([
                         save_edited_comment($(this), cell);
                     }
                     else {
-                        if(authorization.is_authorized()){
-                            print_last_comment(cell);
-                        } else {
-                            alert("You must login where it says 'Type your name' before you can submit a comment.")
-                        }
+                        print_last_comment(cell);
                     }
                 }
                 $(this).parents('form').submit();

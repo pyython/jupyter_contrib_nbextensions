@@ -124,7 +124,7 @@ define(['jquery'], function($) {
     };
 
     var delete_cookie = function() {
-        document.cookie = 'username=""';
+        document.cookie = 'username=';
     }
 
     var authorization = {
