@@ -15,7 +15,7 @@ define([
 
     var ERROR_MESSAGE = "Please log in before editing or submitting comments.";
 
-    var colors = ['#424a70', '#e04646', '#573752', '#46b38e', '#a64c6c', '#497791', '#332431', '#a64c6c', '#e89851', '#784465', '#303042', '#b5f26b', '#d9577c', '#e8cb58', '#466287', '#3ae056', '#8f476a']
+    var colors = ['#424a70', '#e04646', '#46b38e', '#a64c6c', '#497791', '#332431', '#a64c6c', '#573752', '#e89851', '#784465', '#303042', '#b5f26b', '#d9577c', '#e8cb58', '#466287', '#3ae056', '#8f476a']
 
     function generate_id() {
         return 'comment_dialog_' + counter++;
@@ -113,10 +113,13 @@ define([
         var date = format_date_to_today_moment(comment.date);
         var $comment_field = $('<div/>', {class: 'comment_field'});
         var commenter_number = IPython.notebook.metadata["commenters"].indexOf(comment.username.toLowerCase().trim());
+        var color = '#285589';
         if (commenter_number > colors.length || commenter_number == -1) {
-            commenter_number = 0;
+            color = '#'+Math.floor(Math.random()*16777215).toString(16);
+        } else {
+            color = colors[commenter_number];
         }
-        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":", style: "color: " + colors[commenter_number] + ";"});
+        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":", style: "color: " + color + ";"});
         var $date = $('<span/>', {class: 'comment_date', html: date});
         var $heading = $('<h4/>', {class: 'comment_heading'});
         var $comment = $('<p/>', {html: insert_line_breaks(comment.comment), class: "comment_text"});
