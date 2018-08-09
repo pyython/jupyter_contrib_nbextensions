@@ -15,7 +15,7 @@ define([
 
     var ERROR_MESSAGE = "Please log in before editing or submitting comments.";
 
-    IPython.notebook.metadata["colors"] = ['#424a70', '#e04646', '#46b38e', '#a64c6c', '#497791', '#332431', '#573752', '#e89851', '#784465', '#303042', '#b5f26b', '#d9577c', '#e8cb58', '#466287', '#3ae056', '#8f476a'];
+    IPython.notebook.metadata["colors"] = ['#424a70', '#e04646', '#46b38e', '#a64c6c', '#e89851', '#b5f26b', '#d9577c', '#497791', '#332431', '#784465', '#303042', '#e8cb58', '#466287', '#3ae056', '#8f476a'];
 
     function generate_id() {
         return 'comment_dialog_' + counter++;
