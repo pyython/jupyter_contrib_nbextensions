@@ -3,5 +3,5 @@ Name: Cell annotation extension
 Description: Adds annotations cell toolbar.
 Link: https://github.com/scr4t/ipython-annotate
 Icon: icon.png
-Main: main.js
+Main: annotation_extension.js
 Compatibility: 3.x 

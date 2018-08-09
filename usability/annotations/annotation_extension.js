@@ -299,7 +299,7 @@ define([
         var username = authorization.get_username();
         var comment = commentapi.save_comment(cell, username, text);
         var $printed_comments = $('#' + cell.comment_id + ' .printed_comments');
-        var comment_index = +$printed_comments.attr("comment_num");
+        var comment_index = + $printed_comments.attr("comment_num");
         var $saved_comment = design_comment(cell, comment, comment_index);
         $saved_comment.appendTo($printed_comments);
         $last_comment.val("");
