@@ -15,6 +15,8 @@ define([
 
     var ERROR_MESSAGE = "Please log in before editing or submitting comments.";
 
+    var colors = ['#424a70', '#e04646', '#573752', '#46b38e', '#a64c6c', '#497791', '#332431', '#a64c6c', '#e89851', '#784465', '#303042', '#b5f26b', '#d9577c', '#e8cb58', '#466287', '#3ae056', '#8f476a']
+
     function generate_id() {
         return 'comment_dialog_' + counter++;
     };
@@ -110,7 +112,8 @@ define([
     function design_comment(cell, comment, index) {
         var date = format_date_to_today_moment(comment.date);
         var $comment_field = $('<div/>', {class: 'comment_field'});
-        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":"});
+        var commenter_number = IPython.notebook.metadata["commenters"].indexOf(comment.username.toLowerCase().strip());
+        var $username = $('<span/>', {class: 'comment_username', html: comment.username + ":", color: colors[commenter_number]});
         var $date = $('<span/>', {class: 'comment_date', html: date});
         var $heading = $('<h4/>', {class: 'comment_heading'});
         var $comment = $('<p/>', {html: insert_line_breaks(comment.comment), class: "comment_text"});

@@ -654,3 +654,8 @@ span.comment_username {
 .comment_box .edited_comment {
     overflow: visible;
 }
+
+.resolve_comment {
+    float: right;
+    margin: 8px 0px 2px 0px;
+}
