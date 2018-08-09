@@ -79,7 +79,7 @@ define(['jquery'], function($) {
                     if (is_authorized()) {
                         remove_user_login_widget();
                         show_user_widget(username);
-                        var formatted_username = username.toLowerCase().strip();
+                        var formatted_username = username.toLowerCase().trim();
                         if (IPython.notebook.metadata["commenters"] == undefined) {
                             IPython.notebook.metadata["commenters"] = [];
                         }
