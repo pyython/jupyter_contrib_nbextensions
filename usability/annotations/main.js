@@ -379,7 +379,7 @@ define([
         var username = authorization.get_username();
         authorization.show_user_widget(username);
     } else {
-        authorization.show_user_login_widget();
+        // authorization.show_user_login_widget();
     }
 
     IPython.CellToolbar.register_callback(flag_name, cell_flag_init);
