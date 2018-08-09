@@ -218,8 +218,7 @@ define([
             }
         });
         $('body').on('click', '#' + cell.comment_id + ' .resolve_comment', function () {
-            var $comments = commentapi.get_all_comments(cell);
-            $comments = undefined;
+            cell.metadata.comments = [];
             IPython.notebook.save_checkpoint();
             hide_comment_dialog(cell);
         });
